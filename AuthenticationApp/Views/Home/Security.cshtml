@@ -4,4 +4,11 @@
 @{
 }
 
-<h1>You're logged in!!!!!, hi Bob</h1>
+<h1>You're logged in!!!!!</h1>
+<h2>Hi @User.Identity.Name</h2>
+<ul>
+    @foreach(var c in User.Claims)
+    {
+        <li>@c.Type: @c.Value</li>
+    }
+</ul>
