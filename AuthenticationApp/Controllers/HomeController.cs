@@ -50,6 +50,7 @@ namespace AuthenticationApp.Controllers
                 var claims = new List<Claim>();
                 claims.Add(new Claim("User", User));
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, User));
+                claims.Add(new Claim(ClaimTypes.Name, "Jhon Doe"));
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(claimsPrincipal);
