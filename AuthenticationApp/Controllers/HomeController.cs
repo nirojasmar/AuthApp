@@ -27,8 +27,14 @@ namespace AuthenticationApp.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Security()
+        {
+            return View();
+        }
+
+        [HttpGet("denied")]
+        public IActionResult Denied()
         {
             return View();
         }
@@ -51,6 +57,7 @@ namespace AuthenticationApp.Controllers
                 claims.Add(new Claim("User", User));
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, User));
                 claims.Add(new Claim(ClaimTypes.Name, "Jhon Doe"));
+                // claims.Add(new Claim(ClaimTypes.Role, "Admin"));
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(claimsPrincipal);
